@@ -57,16 +57,16 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="CustomFieldModuleTests.cs" />
+    <Compile Include="CustomFieldManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CustomFieldSimple\CustomFieldVerified.csproj">
+    <ProjectReference Include="..\CustomFieldManager\CustomFieldManager.csproj">
       <Project>{0B100856-67FB-4781-9EFE-74A32233203C}</Project>
-      <Name>CustomFieldVerified</Name>
+      <Name>CustomFieldManager</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
