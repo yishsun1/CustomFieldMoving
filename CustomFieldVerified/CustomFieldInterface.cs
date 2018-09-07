@@ -14,7 +14,7 @@ namespace CustomFieldVerified
         /// <param name="context"></param>
         void Import(string context);
         /// <summary>
-        /// Export a XML string from a CustomField manager
+        /// Export a XML string from a CustomField manager 
         /// </summary>
         /// <returns></returns>
         string Export();
