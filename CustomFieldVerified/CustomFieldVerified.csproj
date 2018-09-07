@@ -42,7 +42,7 @@
     <Compile Include="CustomFieldInterface.cs" />
     <Compile Include="CustomFieldStructure\CustomField.cs" />
     <Compile Include="CustomFieldStructure\CustomFieldSetting.cs" />
-    <Compile Include="CustomFieldStructure\CustomFieldStructure.cs" />
+    <Compile Include="CustomFieldManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -13,16 +13,16 @@ namespace CustomFieldVerified.Tests
 
         #region - Test Entity Factory -
 
-        private static ICustomFieldIO CreateIO() { return new CustomFieldVerifiedIO(); }
-        private static ICustomFieldIO CreateIO(string context)
+        private static ICustomFieldManager CreateIO() { return new CustomFieldManager(); }
+        private static ICustomFieldManager CreateIO(string context)
         {
-            var io = new CustomFieldVerifiedIO();
+            var io = new CustomFieldManager();
             io.Import(context);
             return io;
         }
-        private static ICustomFieldIO CreateIO(string context, CustomFieldVerifiedIO.IDVerifyHandler veri)
+        private static ICustomFieldManager CreateIO(string context, CustomFieldManager.IDVerifyHandler veri)
         {
-            var io = new CustomFieldVerifiedIO(veri);
+            var io = new CustomFieldManager(veri);
             io.Import(context);
             return io;
         }
@@ -121,21 +121,11 @@ namespace CustomFieldVerified.Tests
             PassOnlyIfException(() => CreateIO(notExistContext));
         }
 
-        [TestMethod(), TestCategory(_methodValidity)]
-        public void GetManager_WithValidContext_ExitSuccessfully()
-        {
-            var importNothing = CreateIO();
-            importNothing.GetManager();
-
-            var importSomething = CreateIO(_contextFromXQ);
-            importSomething.GetManager();
-        }
-
         [TestMethod, TestCategory(_methodValidity)]
         public void Combination_SetProperty_ReturnEqually()
         {
             var emptyIO = CreateIO();
-            var field = emptyIO.GetManager().AddSetting().AddField();
+            var field = emptyIO.AddSetting().AddField();
             int newCombination = 99;
 
             field.Combination = newCombination;
@@ -146,7 +136,7 @@ namespace CustomFieldVerified.Tests
         public void TextLimit_SetProperty_ReturnEquallyWithoutOrder()
         {
             var emptyIO = CreateIO();
-            var field = emptyIO.GetManager().AddSetting().AddField();
+            var field = emptyIO.AddSetting().AddField();
             int newCombination = 99, newCharacters = 999;
 
             Assert.AreEqual(Constants.NotExistId, field.Combination);
@@ -161,7 +151,7 @@ namespace CustomFieldVerified.Tests
         public void RotationFirst_SetProperty_ReturnEquallyWithoutOrder()
         {
             var emptyIO = CreateIO();
-            var field = emptyIO.GetManager().AddSetting().AddField();
+            var field = emptyIO.AddSetting().AddField();
             int newCombination = 99, newRFirst = 999;
 
             Assert.AreEqual(Constants.NotExistId, field.Combination);
@@ -176,7 +166,7 @@ namespace CustomFieldVerified.Tests
         public void RotationSecond_SetProperty_ReturnEquallyWithoutOrder()
         {
             var emptyIO = CreateIO();
-            var field = emptyIO.GetManager().AddSetting().AddField();
+            var field = emptyIO.AddSetting().AddField();
             int newCombination = 99, newRFirst = 999, newRSecond = 9999;
 
             Assert.AreEqual(Constants.NotExistId, field.Combination);
@@ -209,8 +199,8 @@ namespace CustomFieldVerified.Tests
         [TestMethod(), TestCategory(_equality)]
         public void GetManager_WithValidContext_PropertyEqually()
         {
-            Assert.AreEqual(Constants.NotExistId, CreateIO().GetManager().DefaultID);
-            Assert.AreEqual(13, CreateIO(_contextFromXQ).GetManager().DefaultID);
+            Assert.AreEqual(Constants.NotExistId, CreateIO().DefaultID);
+            Assert.AreEqual(13, CreateIO(_contextFromXQ).DefaultID);
         }
         [TestMethod(), TestCategory(_equality)]
         public void PeekSettings_WithValidContext_PropertyEqually()
@@ -222,7 +212,7 @@ namespace CustomFieldVerified.Tests
                 new AnswerSetting { ID = "337E204A-B47E-4a78-83B8-0A3D64C9F93C", Name = "系統", CycleTime = 10}
             };
 
-            var structure = CreateIO(_contextFromXQ).GetManager();
+            var structure = CreateIO(_contextFromXQ);
             Assert.AreEqual(answerID, structure.DefaultID);
 
             void cmp(ICustomFieldSetting answer, AnswerSetting checking)
@@ -239,7 +229,7 @@ namespace CustomFieldVerified.Tests
         [TestMethod(), TestCategory(_equality)]
         public void PeekFields_WithValidContext_PropertyEqually()
         {
-            var fieldList = CreateIO(_contextFromXQ).GetManager().PeekSettings().First().PeekFields();
+            var fieldList = CreateIO(_contextFromXQ).PeekSettings().First().PeekFields();
 
             var answerField = new List<AnswerField>
             {
@@ -257,7 +247,7 @@ namespace CustomFieldVerified.Tests
         public void PeekFields_WithVerifiedContext_PropertyFiltered()
         {
             var errCode = 87;
-            var io = CreateIO(_contextError, i => i != errCode).GetManager();
+            var io = CreateIO(_contextError, i => i != errCode);
             Assert.AreNotEqual(Constants.NotExistId, errCode);
             Assert.AreEqual(Constants.NotExistId, io.DefaultID);
             
@@ -284,7 +274,7 @@ namespace CustomFieldVerified.Tests
         public void GetManager_ByDefault_PropertyDefault()
         {
             var importNothing = CreateIO();
-            var metadata = importNothing.GetManager();
+            var metadata = importNothing;
             Assert.AreEqual(Constants.NotExistId, metadata.DefaultID);
             Assert.IsFalse(metadata.PeekSettings().Any());
         }
@@ -293,7 +283,7 @@ namespace CustomFieldVerified.Tests
         public void AddSetting_ByDefault_PropertyDefault()
         {
             var importNothing = CreateIO();
-            var emptySetting = importNothing.GetManager().AddSetting();
+            var emptySetting = importNothing.AddSetting();
 
             Assert.IsNull(emptySetting.ID);
             Assert.IsNull(emptySetting.Name);
@@ -305,7 +295,7 @@ namespace CustomFieldVerified.Tests
         public void AddField_ByDefault_PropertyDefault()
         {
             var emptyIO = CreateIO();
-            var emptyField = emptyIO.GetManager().AddSetting().AddField();
+            var emptyField = emptyIO.AddSetting().AddField();
 
             var invalidId = Constants.NotExistId;
             Assert.AreEqual(invalidId, emptyField.Combination);
@@ -322,7 +312,7 @@ namespace CustomFieldVerified.Tests
         public void AddSetting_OneTime_ChangeSize()
         {
             var empty = CreateIO();
-            var metadata = empty.GetManager();
+            var metadata = empty;
             Assert.AreEqual(0, metadata.PeekSettings().Count());
             var adding = metadata.AddSetting();
             Assert.AreEqual(1, metadata.PeekSettings().Count());
@@ -332,7 +322,7 @@ namespace CustomFieldVerified.Tests
         public void RemoveSetting_OneTime_ChangeSize()
         {
             var empty = CreateIO();
-            var metadata = empty.GetManager();
+            var metadata = empty;
 
             Assert.AreEqual(0, metadata.PeekSettings().Count());
             PassOnlyIfException(() =>
@@ -350,7 +340,7 @@ namespace CustomFieldVerified.Tests
         public void AddField_OneTime_ChangeSize()
         {
             var empty = CreateIO();
-            var setting = empty.GetManager().AddSetting();
+            var setting = empty.AddSetting();
             Assert.AreEqual(0, setting.PeekFields().Count());
             var adding = setting.AddField();
             Assert.AreEqual(1, setting.PeekFields().Count());
@@ -361,7 +351,7 @@ namespace CustomFieldVerified.Tests
         {
 
             var empty = CreateIO();
-            var setting = empty.GetManager().AddSetting();
+            var setting = empty.AddSetting();
 
             Assert.AreEqual(0, setting.PeekFields().Count());
             PassOnlyIfException(() =>
@@ -383,7 +373,7 @@ namespace CustomFieldVerified.Tests
             var io = CreateIO(_contextError, i => i != errCode);
             var answer = io.Export();
 
-            var firstField = io.GetManager().PeekSettings().First().PeekFields().ElementAt(1);
+            var firstField = io.PeekSettings().First().PeekFields().ElementAt(1);
 
             Assert.AreNotEqual(Constants.NotExistId, errCode);
             Assert.AreEqual(Constants.NotExistId, firstField.Combination);

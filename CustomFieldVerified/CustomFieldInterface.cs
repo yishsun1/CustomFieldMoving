@@ -3,33 +3,11 @@
 namespace CustomFieldVerified
 {
     /// <summary>
-    /// Represent an IO functionality to construct a CustomField data structure
-    /// </summary>
-    public interface ICustomFieldIO
-    {
-        
-        /// <summary>
-        /// Import a XML string into a manipulatable CustomField manager
-        /// </summary>
-        /// <param name="context"></param>
-        void Import(string context);
-        /// <summary>
-        /// Export a XML string from a CustomField manager 
-        /// </summary>
-        /// <returns></returns>
-        string Export();
-        /// <summary>
-        /// Get a manipulatable CustomField manager structure
-        /// </summary>
-        /// <returns></returns>
-        ICustomFieldManager GetManager();
-
-    }
-    /// <summary>
     /// Represent a manager to CustomField Structure
     /// </summary>
     public interface ICustomFieldManager
     {
+
         int DefaultID { get; set; }
         /// <summary>
         /// Get a READONLY setting List
@@ -45,6 +23,16 @@ namespace CustomFieldVerified
         /// Remove the setting at the end of list
         /// </summary>
         void RemoveSetting();
+        /// <summary>
+        /// Import a XML string into a manipulatable CustomField manager
+        /// </summary>
+        /// <param name="context"></param>
+        void Import(string context);
+        /// <summary>
+        /// Export a XML string from a CustomField manager 
+        /// </summary>
+        /// <returns></returns>
+        string Export();
     }
 
     /// <summary>
