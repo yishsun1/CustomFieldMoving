@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CustomFieldVerified
+namespace CustomFieldManager
 {
     internal class CustomField : ICustomField
     {

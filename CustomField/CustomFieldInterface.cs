@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CustomFieldVerified
+namespace CustomFieldManager
 {
     /// <summary>
     /// Represent a manager to CustomField Structure

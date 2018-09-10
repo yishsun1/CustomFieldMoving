@@ -64,9 +64,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CustomField\CustomField.csproj">
+    <ProjectReference Include="..\CustomField\CustomFieldManager.csproj">
       <Project>{0b100856-67fb-4781-9efe-74a32233203c}</Project>
-      <Name>CustomField</Name>
+      <Name>CustomFieldManager</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

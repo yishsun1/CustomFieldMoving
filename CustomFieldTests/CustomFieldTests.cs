@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-namespace CustomFieldVerified.Tests
+namespace CustomFieldManager.Tests
 {
     [TestClass()]
-    public class CustomFieldModuleTests
+    public class CustomFieldManagerTests
     {
 
         #region - Utility -
