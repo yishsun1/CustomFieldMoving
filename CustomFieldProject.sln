@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomFieldSimpleTests", "CustomFieldSimpleTests\CustomFieldSimpleTests.csproj", "{B5FA8E65-A461-4AFD-8F59-C051313AB976}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomFieldTests", "CustomFieldSimpleTests\CustomFieldTests.csproj", "{B5FA8E65-A461-4AFD-8F59-C051313AB976}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomFieldVerified", "CustomFieldVerified\CustomFieldVerified.csproj", "{0B100856-67FB-4781-9EFE-74A32233203C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomField", "CustomFieldVerified\CustomField.csproj", "{0B100856-67FB-4781-9EFE-74A32233203C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
