@@ -40,8 +40,8 @@
   <ItemGroup>
     <Compile Include="CustomFieldIO.cs" />
     <Compile Include="CustomFieldInterface.cs" />
-    <Compile Include="CustomFieldStructure\CustomField.cs" />
-    <Compile Include="CustomFieldStructure\CustomFieldSetting.cs" />
+    <Compile Include="CustomField.cs" />
+    <Compile Include="CustomFieldSetting.cs" />
     <Compile Include="CustomFieldManager.cs" />
   </ItemGroup>
   <ItemGroup>

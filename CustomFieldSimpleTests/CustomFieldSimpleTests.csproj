@@ -64,11 +64,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\TitleList.xml">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\CustomFieldVerified\CustomFieldVerified.csproj">
       <Project>{0b100856-67fb-4781-9efe-74a32233203c}</Project>
       <Name>CustomFieldVerified</Name>
