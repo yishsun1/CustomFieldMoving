@@ -64,7 +64,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CustomFieldVerified\CustomField.csproj">
+    <ProjectReference Include="..\CustomField\CustomField.csproj">
       <Project>{0b100856-67fb-4781-9efe-74a32233203c}</Project>
       <Name>CustomField</Name>
     </ProjectReference>
@@ -99,7 +99,7 @@
   <Import Project="..\packages\MSTest.TestAdapter.1.3.2\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\packages\MSTest.TestAdapter.1.3.2\build\net45\MSTest.TestAdapter.targets')" />
   <PropertyGroup>
     <PreBuildEvent>
-</PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>
